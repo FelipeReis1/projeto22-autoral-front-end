@@ -26,13 +26,13 @@ export default function RegistrationPage() {
         navigate("/signin");
       });
       promise.catch((error) => {
-        const errorMessage = error.response.data.message + ": ";
-        const errorDetails = error.response.data.details;
+        const errorMessage =
+          error.response.data.message + ": " + error.response.data.details;
         setName("");
         setEmail("");
         setPassword("");
         setConfirmPassword("");
-        alert(errorMessage + errorDetails);
+        alert(errorMessage);
       });
     } else {
       setPassword("");
