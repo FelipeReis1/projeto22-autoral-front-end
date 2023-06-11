@@ -7,7 +7,8 @@ import HomePage from "./pages/HomePage";
 
 function App() {
   const [user, setUser] = useState({});
-  const contextValue = { user, setUser };
+  const [token, setToken] = useState("");
+  const contextValue = { user, setUser, token, setToken };
   return (
     <UserContext.Provider value={contextValue}>
       <BrowserRouter>
