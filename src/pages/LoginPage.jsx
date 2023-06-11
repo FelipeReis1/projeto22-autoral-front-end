@@ -8,9 +8,15 @@ import csgologin from "../assets/img/csgologin.png";
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { setUser } = useContext(UserContext);
-
+  const { token, setToken } = useContext(UserContext);
   const navigate = useNavigate();
+
+  if (localStorage.getItem("token")) {
+    setToken(localStorage.getItem("token"));
+    console.log(token);
+    navigate("/");
+  }
+
   function login(e) {
     e.preventDefault();
     const request = {
@@ -19,7 +25,8 @@ export default function LoginPage() {
     };
     const promise = axios.post("http://localhost:5000/auth/signin", request);
     promise.then((res) => {
-      setUser(res.data);
+      localStorage.setItem("token", res.data);
+      setToken(res.data);
       navigate("/");
     });
     promise.catch(() => {
