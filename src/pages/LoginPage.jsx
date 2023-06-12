@@ -10,6 +10,11 @@ export default function LoginPage() {
   const [password, setPassword] = useState("");
   const { token, setToken } = useContext(UserContext);
   const navigate = useNavigate();
+  const expirationTokenTime = 86400000;
+
+  setTimeout(() => {
+    localStorage.removeItem("token");
+  }, expirationTokenTime);
 
   if (localStorage.getItem("token")) {
     setToken(localStorage.getItem("token"));
