@@ -26,8 +26,8 @@ const StyledProductSelection = styled.ul`
 `;
 
 const StyledProduct = styled.li`
-  width: 208px;
-  height: 273px;
+  width: 300px;
+  height: 403px;
   box-shadow: 0px 4px 6px 4px rgba(46, 12, 126, 0.1);
   border-radius: 5px;
   display: flex;
@@ -37,13 +37,13 @@ const StyledProduct = styled.li`
   padding: 5px;
   background-image: linear-gradient(to bottom, #2c2a35, #3b2632);
   h1 {
-    font-size: 18px;
+    font-size: 23px;
     margin-bottom: 5px;
     color: white;
   }
   img {
-    width: 193px;
-    height: 257px;
+    width: 256px;
+    height: 256px;
     &:hover {
       cursor: pointer;
     }
