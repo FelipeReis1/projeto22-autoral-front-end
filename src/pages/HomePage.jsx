@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Product from "../components/Product";
+import styled from "styled-components";
 export default function HomePage() {
   const [products, setProducts] = useState(undefined);
 
@@ -12,5 +13,16 @@ export default function HomePage() {
     });
     promise.catch((error) => alert(error.response.data));
   }, []);
-  return <>{products && products.map((p) => <Product product={p} />)}</>;
+  return (
+    <StyledContainer>
+      {products && products.map((p) => <Product product={p} />)}
+    </StyledContainer>
+  );
 }
+
+const StyledContainer = styled.div`
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  background-color: #111111;
+`;

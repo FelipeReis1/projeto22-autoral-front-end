@@ -8,8 +8,8 @@ export default function Product({ product }) {
         <img src={product.image}></img>
         <h1>{product.description}</h1>
         <h1>Float: {product.itemQuality}</h1>
-        <h1>R$: {product.price},00</h1>
-        <h1>{product.category}</h1>
+        <h1>Preço: R${product.price},00</h1>
+        <h1>Categoria: {product.category}</h1>
       </StyledProduct>
     </StyledProductSelection>
   );
@@ -19,27 +19,31 @@ const StyledProductSelection = styled.ul`
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
   margin-bottom: 10px;
   margin-top: 20px;
 `;
 
 const StyledProduct = styled.li`
-  width: 145px;
-  height: 209px;
-  box-shadow: 0px 2px 4px 2px rgba(0, 0, 0, 0.1);
-  border-radius: 3px;
+  width: 208px;
+  height: 273px;
+  box-shadow: 0px 4px 6px 4px rgba(46, 12, 126, 0.1);
+  border-radius: 5px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 5px;
+  background-image: linear-gradient(to bottom, #2c2a35, #3b2632);
   h1 {
+    font-size: 18px;
     margin-bottom: 5px;
+    color: white;
   }
   img {
-    width: 129px;
-    height: 193px;
+    width: 193px;
+    height: 257px;
     &:hover {
       cursor: pointer;
     }
