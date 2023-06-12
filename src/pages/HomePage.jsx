@@ -1,19 +1,16 @@
-import styled from "styled-components";
-
+import axios from "axios";
+import { useEffect, useState } from "react";
+import Product from "../components/Product";
 export default function HomePage() {
-  return (
-    <>
-      <StyledContainer>ESTOU NA HOME PAGE</StyledContainer>
-    </>
-  );
-}
+  const [products, setProducts] = useState(undefined);
 
-const StyledContainer = styled.div`
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  font-size: 70px;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-`;
+  useEffect(() => {
+    const promise = axios.get("http://localhost:5000/");
+    promise.then((res) => {
+      console.log(res.data);
+      setProducts(res.data);
+    });
+    promise.catch((error) => alert(error.response.data));
+  }, []);
+  return <>{products && products.map((p) => <Product product={p} />)}</>;
+}
