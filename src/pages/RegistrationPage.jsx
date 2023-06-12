@@ -19,26 +19,27 @@ export default function RegistrationPage() {
       email: email,
       password: password,
     };
-
-    if (password === confirmPassword) {
-      const promise = axios.post("http://localhost:5000/auth/signup", request);
-      promise.then(() => {
-        navigate("/signin");
-      });
-      promise.catch((error) => {
-        const errorMessage =
-          error.response.data.message + ": " + error.response.data.details;
-        setName("");
-        setEmail("");
-        setPassword("");
-        setConfirmPassword("");
-        alert(errorMessage);
-      });
-    } else {
+    if (password !== confirmPassword) {
       setPassword("");
       setConfirmPassword("");
       alert("Senhas não são iguais, tente novamente!");
     }
+    const promise = axios.post("http://localhost:5000/auth/signup", request);
+    promise.then(() => {
+      navigate("/signin");
+    });
+    promise.catch((error) => {
+      if (error.message === "Network Error") {
+        alert(error.message);
+      }
+      const errorMessage =
+        error.response.data.message + ": " + error.response.data.details;
+      setName("");
+      setEmail("");
+      setPassword("");
+      setConfirmPassword("");
+      alert(errorMessage);
+    });
   }
 
   return (
