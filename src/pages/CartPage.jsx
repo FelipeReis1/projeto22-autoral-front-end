@@ -11,10 +11,11 @@ export default function CartPage() {
   const cartString = localStorage.getItem("cart");
   const userId = localStorage.getItem("userId");
   const navigate = useNavigate();
+  const apiURL = import.meta.env.VITE_APP_API_URL;
 
   useEffect(() => {
     const cart = JSON.parse(cartString);
-    const promise = axios.get(`http://localhost:5000/cart/${cart.id}`);
+    const promise = axios.get(`${apiURL}/cart/${cart.id}`);
     promise.then((res) => {
       console.log(res.data);
       setCartProducts(res.data);
@@ -27,7 +28,7 @@ export default function CartPage() {
 
   function deleteCart() {
     const cart = JSON.parse(cartString);
-    const promise = axios.delete(`http://localhost:5000/cart/${cart.id}`);
+    const promise = axios.delete(`${apiURL}/cart/${cart.id}`);
     promise.then((res) => {
       setCartProducts(undefined);
       localStorage.removeItem("cart");

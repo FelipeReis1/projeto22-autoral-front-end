@@ -6,9 +6,9 @@ import Header from "../components/Header";
 
 export default function HomePage() {
   const [products, setProducts] = useState(undefined);
-
+  const apiURL = import.meta.env.VITE_APP_API_URL;
   useEffect(() => {
-    const promise = axios.get("http://localhost:5000/");
+    const promise = axios.get(`${apiURL}`);
     promise.then((res) => {
       setProducts(res.data);
     });

@@ -10,11 +10,12 @@ export default function Header() {
   const name = localStorage.getItem("user");
   const cartString = localStorage.getItem("cart");
   const navigate = useNavigate();
+  const apiURL = import.meta.env.VITE_APP_API_URL;
 
   function logout() {
     if (cartString) {
       const cart = JSON.parse(cartString);
-      const promise = axios.delete(`http://localhost:5000/cart/${cart.id}`);
+      const promise = axios.delete(`${apiURL}/cart/${cart.id}`);
       promise.then(() => {
         localStorage.removeItem("token");
         localStorage.removeItem("user");
