@@ -8,12 +8,11 @@ import csgologin from "../assets/img/csgologin.png";
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { token, setToken } = useContext(UserContext);
+  const { setToken, setUser, setUserId } = useContext(UserContext);
   const navigate = useNavigate();
 
   if (localStorage.getItem("token")) {
     setToken(localStorage.getItem("token"));
-    console.log(token);
     navigate("/");
   }
 
@@ -25,8 +24,12 @@ export default function LoginPage() {
     };
     const promise = axios.post("http://localhost:5000/auth/signin", request);
     promise.then((res) => {
-      localStorage.setItem("token", res.data);
-      setToken(res.data);
+      localStorage.setItem("token", res.data.token);
+      localStorage.setItem("user", res.data.name);
+      localStorage.setItem("userId", res.data.id);
+      setUser(res.data.name);
+      setToken(res.data.token);
+      setUserId(res.data.id);
       navigate("/");
     });
     promise.catch(() => {
