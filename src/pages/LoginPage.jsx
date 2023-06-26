@@ -9,6 +9,7 @@ export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { setToken, setUser, setUserId } = useContext(UserContext);
+  const apiURL = import.meta.env.VITE_APP_API_URL;
   const navigate = useNavigate();
 
   if (localStorage.getItem("token")) {
@@ -22,7 +23,7 @@ export default function LoginPage() {
       email: email,
       password: password,
     };
-    const promise = axios.post("http://localhost:5000/auth/signin", request);
+    const promise = axios.post(`${apiURL}/auth/signin`, request);
     promise.then((res) => {
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("user", res.data.name);

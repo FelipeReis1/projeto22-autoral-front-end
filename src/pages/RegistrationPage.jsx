@@ -9,6 +9,7 @@ export default function RegistrationPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const apiURL = import.meta.env.VITE_APP_API_URL;
 
   const navigate = useNavigate();
   function createUser(e) {
@@ -24,7 +25,7 @@ export default function RegistrationPage() {
       setConfirmPassword("");
       alert("Senhas não são iguais, tente novamente!");
     }
-    const promise = axios.post("http://localhost:5000/auth/signup", request);
+    const promise = axios.post(`${apiURL}/auth/signup`, request);
     promise.then(() => {
       navigate("/signin");
     });
