@@ -3,13 +3,13 @@ import { useEffect, useState } from "react";
 import Product from "../components/Product";
 import styled from "styled-components";
 import Header from "../components/Header";
+
 export default function HomePage() {
   const [products, setProducts] = useState(undefined);
 
   useEffect(() => {
     const promise = axios.get("http://localhost:5000/");
     promise.then((res) => {
-      console.log(res.data);
       setProducts(res.data);
     });
     promise.catch((error) => alert(error.response.data));
@@ -19,7 +19,7 @@ export default function HomePage() {
       <Header />
       <StyledContainer>
         <StyledProductSelection>
-          {products && products.map((p) => <Product product={p} />)}
+          {products && products.map((p, i) => <Product product={p} key={i} />)}
         </StyledProductSelection>
       </StyledContainer>
     </>
@@ -28,10 +28,12 @@ export default function HomePage() {
 
 const StyledContainer = styled.div`
   width: 100%;
-  height: 100vh;
+  height: 100%;
   display: flex;
   background-color: #111111;
-  margin-top: 64px;
+  margin-top: 54px;
+  font-family: "Ubuntu", sans-serif;
+  font-style: normal;
 `;
 const StyledProductSelection = styled.ul`
   width: 100%;
